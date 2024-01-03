@@ -1,7 +1,8 @@
 import sys
 from argparse import ArgumentParser
 
-sys.path.append("..")
+# sys.path.append("..")
+sys.path.append("./")
 if True:  # write after `sys.path.append("..")`
     from elegantrl import train_agent, train_agent_multiprocessing
     from elegantrl import Config, get_gym_env_args
@@ -45,7 +46,7 @@ def train_ddpg_td3_sac_for_lunar_lander_continuous():
     args.buffer_size = int(4e5)  # PER can handle larger buffer_size
     args.repeat_times = 0.5  # PER don't need a large repeat_times
 
-    if_single_process = False
+    if_single_process = True
     if if_single_process:
         train_agent(args)
     else:

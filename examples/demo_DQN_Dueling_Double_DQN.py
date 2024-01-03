@@ -1,7 +1,14 @@
 import sys
 from argparse import ArgumentParser
 
-sys.path.append("..")
+
+import warnings
+
+# 忽略 Gym 中的警告
+warnings.filterwarnings("ignore", category=UserWarning, module="gym")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="gym")
+
+sys.path.append("./")
 if True:  # write after `sys.path.append("..")`
     from elegantrl import train_agent, train_agent_multiprocessing
     from elegantrl import Config, get_gym_env_args
@@ -42,6 +49,7 @@ def train_dqn_for_cartpole():
         train_agent(args)
     else:
         train_agent_multiprocessing(args)
+
     """
 0 < 9 < 400 < 500
 ################################################################################
@@ -94,7 +102,7 @@ def train_dqn_for_cartpole_vec_env():
     args.gpu_id = GPU_ID
     args.random_seed = GPU_ID
     args.num_workers = 2
-    if_single_process = False
+    if_single_process = True
     if if_single_process:
         train_agent(args)
     else:
@@ -243,6 +251,7 @@ if __name__ == '__main__':
 
     Args = Parser.parse_args()
     GPU_ID = Args.gpu
+    print(GPU_ID)
     DRL_ID = Args.drl
     ENV_ID = Args.env
 

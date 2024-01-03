@@ -159,6 +159,7 @@ def get_gym_env_args(env, if_print: bool) -> dict:
     if_gym_standard_env = {'unwrapped', 'observation_space', 'action_space', 'spec'}.issubset(dir(env))
 
     if if_gym_standard_env and (not hasattr(env, 'num_envs')):  # isinstance(env, gym.Env):
+        print("your gym version", gym.__version__)
         assert '0.18.0' <= gym.__version__ <= '0.25.2'  # pip3 install gym==0.24.0
         env_name = env.unwrapped.spec.id
         num_envs = getattr(env, 'num_envs', 1)
